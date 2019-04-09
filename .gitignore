@@ -1,0 +1,5 @@
+*.iml
+/app/libs/*.aar
+/*.properties
+/.idea/
+/.gradle/

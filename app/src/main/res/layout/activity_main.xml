@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.MainActivity">
+
+	<RelativeLayout
+		android:id="@+id/relativelayout1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<TextView
+			android:id="@+id/main_channel_id"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#000"
+			android:textSize="12sp"/>
+
+		<TextView
+			android:id="@+id/main_local_user_id"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:layout_toRightOf="@+id/main_channel_id"
+			android:textColor="#000"
+			android:textSize="12sp"/>
+
+		<TextView
+			android:id="@+id/main_role"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:layout_toRightOf="@+id/main_local_user_id"
+			android:textColor="#000"
+			android:textSize="12sp"/>
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:id="@+id/relativelayout2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/relativelayout1">
+
+		<TextView
+			android:id="@+id/main_anchor_id"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#000"
+			android:textSize="12sp"/>
+	</RelativeLayout>
+
+	<FrameLayout
+		android:id="@+id/main_video_playerly"
+		android:layout_width="match_parent"
+		android:layout_height="200dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
+		android:layout_marginTop="15dp"
+		android:background="@drawable/mainly_video_playerly_bg"
+		android:padding="10dp"
+		app:layout_constraintTop_toBottomOf="@+id/relativelayout2">
+
+		<ImageView
+			android:id="@+id/main_video_control"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|right"
+			android:src="@drawable/btn_player_play"
+			android:text="@string/ttt_ktv_start_play"
+			android:textColor="#ff00ff"
+			android:textSize="16sp"/>
+	</FrameLayout>
+
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/main_controlly"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
+		android:layout_marginTop="15dp"
+		app:layout_constraintTop_toBottomOf="@+id/main_video_playerly">
+
+		<TextView
+			android:id="@+id/main_change_song"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/ttt_ktv_change_song"
+			android:textColor="#3c78d8"
+			android:textSize="16sp"
+			app:layout_constraintRight_toRightOf="parent"/>
+
+		<TextView
+			android:id="@+id/textview1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/ttt_ktv_adjust_music_volume"
+			android:textColor="#000000"
+			android:textSize="12sp"/>
+
+		<RelativeLayout
+			android:id="@+id/video_control_music_volume_ly"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			app:layout_constraintTop_toBottomOf="@+id/textview1">
+
+			<SeekBar
+				android:id="@+id/video_control_music_volume"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_toLeftOf="@+id/video_control_music_volume_num"/>
+
+			<TextView
+				android:id="@+id/video_control_music_volume_num"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:textColor="#000000"
+				android:textSize="16sp"/>
+		</RelativeLayout>
+
+		<TextView
+			android:id="@+id/textview2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="15dp"
+			android:text="@string/ttt_ktv_adjust_solo_volume"
+			android:textColor="#000000"
+			android:textSize="12sp"
+			app:layout_constraintTop_toBottomOf="@+id/video_control_music_volume_ly"/>
+
+		<RelativeLayout
+			android:id="@+id/video_control_local_volume_ly"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			app:layout_constraintTop_toBottomOf="@+id/textview2">
+
+			<SeekBar
+				android:id="@+id/video_control_local_volume"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_toLeftOf="@+id/video_control_local_volume_num"/>
+
+			<TextView
+				android:id="@+id/video_control_local_volume_num"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:textColor="#000000"
+				android:textSize="16sp"/>
+		</RelativeLayout>
+	</android.support.constraint.ConstraintLayout>
+
+	<android.support.constraint.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
+		android:layout_marginTop="15dp"
+		app:layout_constraintTop_toBottomOf="@+id/main_controlly">
+
+		<TextView
+			android:id="@+id/main_audio_state"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="15dp"
+			android:textColor="#3c78d8"
+			android:textSize="16sp"
+			app:layout_constraintHorizontal_chainStyle="packed"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toLeftOf="@+id/main_video_state"/>
+
+		<TextView
+			android:id="@+id/main_video_state"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#3c78d8"
+			android:textSize="16sp"
+			app:layout_constraintLeft_toRightOf="@+id/main_audio_state"
+			app:layout_constraintRight_toRightOf="parent"/>
+	</android.support.constraint.ConstraintLayout>
+
+	<ImageView
+		android:id="@+id/main_mic_control"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10dp"
+		android:src="@drawable/ic_microphone_normal"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"/>
+
+	<TextView
+		android:id="@+id/main_exit_room"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="15dp"
+		android:text="@string/ttt_ktv_exit_room"
+		android:textColor="#000000"
+		android:textSize="16sp"
+		app:layout_constraintBottom_toBottomOf="@+id/main_mic_control"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/main_mic_control"/>
+
+	<TextView
+		android:id="@+id/main_change_role"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="15dp"
+		android:text="@string/ttt_ktv_broadcast"
+		android:textColor="#000000"
+		android:textSize="16sp"
+		app:layout_constraintBottom_toBottomOf="@+id/main_mic_control"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/main_mic_control"/>
+</android.support.constraint.ConstraintLayout>
