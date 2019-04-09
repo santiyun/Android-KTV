@@ -31,11 +31,11 @@
 13. 调节本地传输到远端人声音量 [adjustAudioMixingSoloVolume](http://www.3ttech.cn/index.php?menu=72&type=Android#adjustAudioMixingSoloVolume)
 14. 离开频道 [leaveChannel](http://www.3ttech.cn/index.php?menu=72&type=Android#leaveChannel)
 
-###IjkVideoView 控件必要接口
+### IjkVideoView 控件必要接口
 1. 开启KTV模式 [controlKtvMode]
 2. 调节伴奏的本地播放音量 [setVolume]
 
-###可选操作
+### 可选操作
 1. 静音/取消静音 [muteLocalAudioStream](http://www.3ttech.cn/index.php?menu=72&type=Android#muteLocalAudioStream)
 2. 启用说话音量提示，可选操作 [enableAudioVolumeIndication](http://www.3ttech.cn/index.php?menu=72&type=Android#enableAudioVolumeIndication)
 
