@@ -49,5 +49,5 @@ dependencies {
         exclude group: 'com.android.support'
     }
     implementation 'com.yanzhenjie:permission:2.0.0-rc1'
-    implementation(name: <这里填下载的sdk aar名字>, ext: 'aar')
+    implementation(name: "3T_Native_SDK_for_Android_V2.1.0_Full(2019_04_10)", ext: 'aar')
 }

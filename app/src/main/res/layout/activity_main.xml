@@ -96,6 +96,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/ttt_ktv_change_song"
 			android:textColor="#3c78d8"
+			android:background="@drawable/selector_main_change_song"
 			android:textSize="16sp"
 			app:layout_constraintRight_toRightOf="parent"/>
 
