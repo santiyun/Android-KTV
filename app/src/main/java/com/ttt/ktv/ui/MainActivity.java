@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity {
     private TTTRtcEngine mTTTEngine;
     private SeekBar mVideoControlLocalVolume, mVideoControlMusicVolume;
     private TextView mAudioState, mVideoState, mAdjMusicNum, mAdjLocalNum, mAnchorTV, mChangeRoleTV;
+    private TextView mRoleTV;
     private ImageView mVideoControl, mMicControl;
     private ViewGroup mMainVideoPlayerly;
     private boolean mIsPlaying, mIsMuteLocalAudio, mIsPause;
@@ -54,6 +55,9 @@ public class MainActivity extends BaseActivity {
     private String mAuidoMixFilePath;
     private MyLocalBroadcastReceiver mLocalBroadcast;
     private AlertDialog.Builder mErrorExitDialog;
+
+    private int mCurrentMusicVolume = 100;
+    private int mCurrentSoloVolume = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +128,7 @@ public class MainActivity extends BaseActivity {
         TextView mRoomID = findViewById(R.id.main_channel_id);
         String strChannel = getString(R.string.ttt_prefix_channel_name);
         mRoomID.setText(strChannel + ": " + LocalConfig.mRoomID);
-        TextView mRoleTV = findViewById(R.id.main_role);
+        mRoleTV = findViewById(R.id.main_role);
         String strRole = getString(R.string.ttt_role);
         if (Constants.CLIENT_ROLE_AUDIENCE == LocalConfig.mRole) {
             String strAudidence = getString(R.string.ttt_role_audience);
@@ -224,12 +228,15 @@ public class MainActivity extends BaseActivity {
         mVideoControlMusicVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                // 调节 ijk 本地播放的音量大小，调节范围是0~1。此调节仅是改变本地的效果，不影响远端。
-                float result = i / 100f;
-                mIjkVideoView.setVolume(result);
-                // 调节远端听到的音量大小，调节范围是0~100。此调节仅是改变远端的效果，不影响本地。
-                mTTTEngine.adjustAudioMixingVolume(i);
-                mAdjMusicNum.setText(String.valueOf(i));
+                if (mIjkVideoView != null) {
+                    // 调节 ijk 本地播放的音量大小，调节范围是0~1。此调节仅是改变本地的效果，不影响远端。
+                    float result = i / 100f;
+                    mIjkVideoView.setVolume(result);
+                    // 调节远端听到的音量大小，调节范围是0~100。此调节仅是改变远端的效果，不影响本地。
+                    mTTTEngine.adjustAudioMixingVolume(i);
+                    mAdjMusicNum.setText(String.valueOf(i));
+                }
+                mCurrentMusicVolume = i;
             }
 
             @Override
@@ -250,6 +257,7 @@ public class MainActivity extends BaseActivity {
                 // 调节范围是0~100
                 mTTTEngine.adjustAudioMixingSoloVolume(i);
                 mAdjLocalNum.setText(String.valueOf(i));
+                mCurrentSoloVolume = i;
             }
 
             @Override
@@ -271,11 +279,17 @@ public class MainActivity extends BaseActivity {
                     mChangeRoleTV.setText(R.string.ttt_ktv_audience);
                     mMicControl.setVisibility(View.VISIBLE);
                     mTTTEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER); // 变为副播
+                    String strRole = getString(R.string.ttt_role);
+                    String strBroadcast = getString(R.string.ttt_role_broadcaster);
+                    mRoleTV.setText(strRole + ": " + strBroadcast);
                     LocalConfig.mRole = Constants.CLIENT_ROLE_BROADCASTER;
                 } else if (Constants.CLIENT_ROLE_BROADCASTER == LocalConfig.mRole) {
                     mChangeRoleTV.setText(R.string.ttt_ktv_broadcast);
                     mMicControl.setVisibility(View.INVISIBLE);
                     mTTTEngine.setClientRole(Constants.CLIENT_ROLE_AUDIENCE); // 变为观众
+                    String strRole = getString(R.string.ttt_role);
+                    String strAudidence = getString(R.string.ttt_role_audience);
+                    mRoleTV.setText(strRole + ": " + strAudidence);
                     LocalConfig.mRole = Constants.CLIENT_ROLE_AUDIENCE;
                 }
             }
@@ -302,6 +316,14 @@ public class MainActivity extends BaseActivity {
             mTTTEngine.startIjkPlayer(uri.toString(), true);
             mIsPlaying = true;
             mVideoControl.setImageResource(R.drawable.btn_player_pause);
+            // 调节 ijk 本地播放的音量大小，调节范围是0~1。此调节仅是改变本地的效果，不影响远端。
+            if (mIjkVideoView != null) {
+                float result = mCurrentMusicVolume / 100f;
+                mIjkVideoView.setVolume(result);
+                // 调节远端听到的音量大小，调节范围是0~100。此调节仅是改变远端的效果，不影响本地。
+                mTTTEngine.adjustAudioMixingVolume(mCurrentMusicVolume);
+                mTTTEngine.adjustAudioMixingSoloVolume(mCurrentSoloVolume);
+            }
         }
     }
 
@@ -469,7 +491,7 @@ public class MainActivity extends BaseActivity {
                             // 创建视频控件
                             SurfaceView surfaceView = mTTTEngine.CreateRendererView(mContext);
                             // 设置视频属性
-                            mTTTEngine.setupRemoteVideo(new VideoCanvas(uid, Constants.RENDER_MODE_FIT,surfaceView));
+                            mTTTEngine.setupRemoteVideo(new VideoCanvas(uid, Constants.RENDER_MODE_FIT, surfaceView));
                             // 添加到布局文件中
                             mMainVideoPlayerly.addView(surfaceView, 0);
                         }

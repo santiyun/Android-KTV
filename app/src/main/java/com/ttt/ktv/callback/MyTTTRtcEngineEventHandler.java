@@ -7,10 +7,10 @@ import com.ttt.ktv.LocalConfig;
 import com.ttt.ktv.LocalConstans;
 import com.ttt.ktv.bean.JniObjs;
 import com.ttt.ktv.utils.MyLog;
-import com.wushuangtech.bean.LocalAudioStats;
-import com.wushuangtech.bean.LocalVideoStats;
-import com.wushuangtech.bean.RemoteAudioStats;
-import com.wushuangtech.bean.RemoteVideoStats;
+import com.wushuangtech.expansion.bean.LocalAudioStats;
+import com.wushuangtech.expansion.bean.LocalVideoStats;
+import com.wushuangtech.expansion.bean.RemoteAudioStats;
+import com.wushuangtech.expansion.bean.RemoteVideoStats;
 import com.wushuangtech.library.Constants;
 import com.wushuangtech.wstechapi.TTTRtcEngineEventHandler;
 
