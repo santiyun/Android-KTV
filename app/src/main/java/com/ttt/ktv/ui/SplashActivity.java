@@ -46,7 +46,7 @@ public class SplashActivity extends BaseActivity {
         //2.创建 SDK 的回调接收类对象，接收 SDK 回调的所有信令。
         LocalConfig.mMyTTTRtcEngineEventHandler = new MyTTTRtcEngineEventHandler(getApplicationContext());
         //3.创建 SDK 的实例对象，用于执行 SDK 各项功能。此函数仅需要调用一次即可。
-        mTTTEngine = TTTRtcEngine.create(getApplicationContext(), "a967ac491e3acf92eed5e1b5ba641ab7", false,
+        mTTTEngine = TTTRtcEngine.create(getApplicationContext(), <APPID引用位置>, false,
                 LocalConfig.mMyTTTRtcEngineEventHandler);
 
         if (mTTTEngine == null) {

@@ -91,12 +91,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         try {
             unregisterReceiver(mLocalBroadcast);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        mTTTEngine.muteLocalAudioStream(false);
+        super.onDestroy();
     }
 
     private void initView() {
