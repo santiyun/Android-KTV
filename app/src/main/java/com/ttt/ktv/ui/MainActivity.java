@@ -314,7 +314,7 @@ public class MainActivity extends BaseActivity {
         if (!mIsPlaying) {
             Uri uri = Uri.parse(mPlayPath);
             mIjkVideoView.setAspectRatio(IRenderView.AR_16_9_FIT_PARENT);
-            mTTTEngine.startIjkPlayer(uri.toString(), true);
+            mTTTEngine.startIjkPlayer(uri.toString(), false);
             mIsPlaying = true;
             mVideoControl.setImageResource(R.drawable.btn_player_pause);
             // 调节 ijk 本地播放的音量大小，调节范围是0~1。此调节仅是改变本地的效果，不影响远端。
