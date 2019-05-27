@@ -3,3 +3,6 @@
 /*.properties
 /.idea/
 /.gradle/
+/build/*
+/ktv.jks
+/app/release/*
